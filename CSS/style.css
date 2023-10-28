@@ -1,0 +1,146 @@
+#nav-container {
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
+  }
+  .bg-nav{
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("https://www.bhg.com/thmb/w1nvm3p2qmu4Ljb9AOfmVl-UvCI=/3000x0/filters:no_upscale():strip_icc()/how-to-water-houseplants-5651236-primary-3aa1e5b5021640ee96184b6755caa964.jpg")!important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: contain;
+    background-position:center;
+    z-index: 0;
+  }
+  #nav-toggle {
+    display: block;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transform: rotate(0deg);
+  }
+  
+  #nav-toggle span {
+    background-color: black;
+    width: 100%;
+    height: 4px;
+    border-radius: 1px;
+    display: block;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: 0.5s ease-in-out;
+  }
+  
+  #nav-toggle span:nth-child(1) {
+    top: 4px;
+    transform-origin: left center;
+  }
+  
+  #nav-toggle span:nth-child(2) {
+    top: 14px;
+    transform-origin: left center;
+  }
+  
+  #nav-toggle span:nth-child(3) {
+    top: 24px;
+    transform-origin: left center;
+  }
+  
+  #nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 3px;
+    left: 4px;
+  }
+  
+  #nav-toggle.open span:nth-child(2) {
+    width: 0%;
+    opacity: 0;
+  }
+  
+  #nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 25px;
+    left: 4px;
+  }
+  
+  #nav-overlay {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    transition: 1s;
+    transform: scale3d(0, 0, 0);
+  }
+  
+  #nav-overlay.open {
+    transform: scale3d(1, 1, 1);
+  }
+  
+  #nav-fullscreen {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: ease-in-out 0.25s;
+    transition-delay: 0s;
+    visibility: hidden;
+    opacity: 0;
+  }
+  #nav-fullscreen ul {
+    list-style: none;
+  }
+  #nav-fullscreen a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  #nav-fullscreen.open {
+    visibility: visible;
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+    transition-delay: 0.25s;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    padding: 0;
+    color: white;
+    font-family: 'Poppins';
+  }
+  
+  #nav-overlay {
+    background: linear-gradient(180deg, #ff522fb4 10%, #ff522f9a 50%, #dd247787 90%);
+    
+  }
+  
+  #nav-toggle span {
+    background-color: white;
+  }
+  
+  #nav-fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: sans-serif;
+    font-size: 10vh;
+  }
+  #nav-fullscreen li:hover {
+    list-style: disc;
+  }

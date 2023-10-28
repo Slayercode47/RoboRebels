@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>nursery</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="./Images/svg-formatter-beautifier (2).png" alt=""
+                    height="200px" width="200px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <!-- <button  data-bs-toggle="dropdown" aria-expanded="false">
+                  Select State
+                </button> -->
+                        <label for="states">Select a State:</label>
+                        <select id="states" onchange="populateDistricts()">
+                            <option value="select">Punjab</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <!-- Add other states here -->
+                        </select>
+
+                        <label for="districts">Select a District:</label>
+                        <select id="districts">
+                            <option value="select">Select District</option>
+                        </select>
+
+                        <button onclick="showNurseries_Punjab_Mohali()">Find Nurseries</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="nurseriesList">
+
+    </div>
+</body>
+<script>
+
+    // const stateDistricts = {
+    //   "Andhra Pradesh": ["District 1A", "District 1B", "District 1C"],
+    //   "Arunachal Pradesh": ["District 2A", "District 2B", "District 2C"],
+    //   "Assam": ["District 2A", "District 2B", "District 2C"],
+    //   "Bihar": ["District 2A", "District 2B", "District 2C"],
+    //   "Chhattisgarh": ["District 2A", "District 2B", "District 2C"],
+    //   "Goa": ["District 2A", "District 2B", "District 2C"],
+    //   "Gujarat": ["District 2A", "District 2B", "District 2C"],
+    //   "Haryana": ["District 2A", "District 2B", "District 2C"],
+    //   "Himachal Pradesh": ["District 2A", "District 2B", "District 2C"],
+    //   "Jharkhand": ["District 2A", "District 2B", "District 2C"],
+    //   "Karnataka": ["District 2A", "District 2B", "District 2C"],
+    //   "Kerala": ["District 2A", "District 2B", "District 2C"],
+    //   "Madhya Pradesh": ["District 2A", "District 2B", "District 2C"],
+    //   "Maharashtra": ["District 2A", "District 2B", "District 2C"],
+    //   "Manipur": ["District 2A", "District 2B", "District 2C"],
+    //   "Meghalaya": ["District 2A", "District 2B", "District 2C"],
+    //   "Mizoram": ["District 2A", "District 2B", "District 2C"],
+    //   "Nagaland": ["District 2A", "District 2B", "District 2C"],
+    //   "Odisha": ["District 2A", "District 2B", "District 2C"],
+    //   
+
+
+
+    //   // Add more states and districts as needed...
+    // };
+
+    const districtsByState = {
+        AndhraPradesh: ["District 1A", "District 1B", "District 1C"],
+        ArunachalPradesh: ["District 2A", "District 2B", "District 2C"],
+        Assam: ["District 2A", "District 2B", "District 2C"],
+        Bihar: ["District 2A", "District 2B", "District 2C"],
+        Chhattisgarh: ["District 2A", "District 2B", "District 2C"],
+        Goa: ["District 2A", "District 2B", "District 2C"],
+        Gujarat: ["District 2A", "District 2B", "District 2C"],
+        Haryana: ["District 2A", "District 2B", "District 2C"],
+        HimachalPradesh: ["District 2A", "District 2B", "District 2C"],
+        Jharkhand: ["District 2A", "District 2B", "District 2C"],
+        Karnataka: ["Bangalore", "Mysore", "Hubli"],
+        Kerala: ["District 2A", "District 2B", "District 2C"],
+        MadhyaPradesh: ["District 2A", "District 2B", "District 2C"],
+        Maharashtra: ["Mumbai", "Pune", "Nagpur"],
+        Manipur: ["District 2A", "District 2B", "District 2C"],
+        Meghalaya: ["District 2A", "District 2B", "District 2C"],
+        Mizoram: ["District 2A", "District 2B", "District 2C"],
+        Nagaland: ["District 2A", "District 2B", "District 2C"],
+        Odisha: ["District 2A", "District 2B", "District 2C"],
+
+        Punjab: ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Muktsar", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "Mohali", "Pathankot", "Sangrur", "Shahid Bhagat Singh Nagar", "Tarn Taran",],
+        Rajasthan: ["District 2A", "District 2B", "District 2C"],
+        Sikkim: ["District 2A", "District 2B", "District 2C"],
+        TamilNadu: ["District 2A", "District 2B", "District 2C"],
+        Telangana: ["District 2A", "District 2B", "District 2C"],
+        Tripura: ["District 2A", "District 2B", "District 2C"],
+        UttarPradesh: ["District 2A", "District 2B", "District 2C"],
+        Uttarakhandh: ["District 2A", "District 2B", "District 2C"],
+        WestBengal: ["District 2A", "District 2B", "District 2C"]
+
+    };
+
+    function populateDistricts() {
+        const stateSelect = document.getElementById("states");
+        const districtSelect = document.getElementById("districts");
+        const selectedState = stateSelect.value;
+
+        // Clear the district dropdown
+        districtSelect.innerHTML = '<option value="select">Select District</option>';
+
+        if (selectedState !== "select") {
+            const districts = districtsByState[selectedState];
+            districts.forEach(district => {
+                const option = document.createElement("option");
+                option.value = district;
+                option.text = district;
+                districtSelect.appendChild(option);
+            });
+        }
+    }
+
+    function showNurseries_Punjab_Mohali() {
+        const selectedState = document.getElementById("states").Punjab;
+        const selectedDistrict = document.getElementById("districts").Mohali;
+
+        // Here you would make an API call to fetch nursery data based on the selected state and district
+        // Simulating API call by displaying dummy data
+        const nurseries = [
+            { name: "Nursery A", location: "Address 1" },
+            { name: "Nursery B", location: "Address 2" },
+            { name: "Nursery C", location: "Address 3" }
+            // Dummy data - replace this with API response
+        ];
+
+        let nurseriesList = "<h3>Nearby Nurseries:</h3>";
+        nurseries.forEach(nursery => {
+            nurseriesList += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
+        });
+
+        document.getElementById("nurseriesList").innerHTML = nurseriesList;
+    }
+    function showNurseries_Punjab_Ropar() {
+        const selectedState = document.getElementById("states").Punjab;
+        const selectedDistrict = document.getElementById("districts").Rupnagar;
+
+        // Here you would make an API call to fetch nursery data based on the selected state and district
+        // Simulating API call by displaying dummy data
+        const nurseries = [
+            { name: "Nursery A", location: "Address 1" },
+            { name: "Nursery B", location: "Address 2" },
+            { name: "Nursery C", location: "Address 3" }
+            // Dummy data - replace this with API response
+        ];
+
+        let nurseriesList = "<h3>Nearby Nurseries:</h3>";
+        nurseries.forEach(nursery => {
+            nurseriesList += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
+        });
+
+        document.getElementById("nurseriesList").innerHTML = nurseriesList;
+    }
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+</html>

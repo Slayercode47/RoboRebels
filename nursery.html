@@ -27,7 +27,8 @@
                 </button> -->
                         <label for="states">Select a State:</label>
                         <select id="states" onchange="populateDistricts()">
-                            <option value="select">Punjab</option>
+                            <option value="select">Select State</option>
+                            <option value="Punjab">Punjab</option>
                             <option value="Maharashtra">Maharashtra</option>
                             <option value="Karnataka">Karnataka</option>
                             <!-- Add other states here -->
@@ -38,45 +39,17 @@
                             <option value="select">Select District</option>
                         </select>
 
-                        <button onclick="showNurseries_Punjab_Mohali()">Find Nurseries</button>
+                        <button onclick="showNurseries()">Find Nurseries</button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div id="nurseriesList">
+    <div id="nurseriesList_mohali">
 
     </div>
 </body>
 <script>
-
-    // const stateDistricts = {
-    //   "Andhra Pradesh": ["District 1A", "District 1B", "District 1C"],
-    //   "Arunachal Pradesh": ["District 2A", "District 2B", "District 2C"],
-    //   "Assam": ["District 2A", "District 2B", "District 2C"],
-    //   "Bihar": ["District 2A", "District 2B", "District 2C"],
-    //   "Chhattisgarh": ["District 2A", "District 2B", "District 2C"],
-    //   "Goa": ["District 2A", "District 2B", "District 2C"],
-    //   "Gujarat": ["District 2A", "District 2B", "District 2C"],
-    //   "Haryana": ["District 2A", "District 2B", "District 2C"],
-    //   "Himachal Pradesh": ["District 2A", "District 2B", "District 2C"],
-    //   "Jharkhand": ["District 2A", "District 2B", "District 2C"],
-    //   "Karnataka": ["District 2A", "District 2B", "District 2C"],
-    //   "Kerala": ["District 2A", "District 2B", "District 2C"],
-    //   "Madhya Pradesh": ["District 2A", "District 2B", "District 2C"],
-    //   "Maharashtra": ["District 2A", "District 2B", "District 2C"],
-    //   "Manipur": ["District 2A", "District 2B", "District 2C"],
-    //   "Meghalaya": ["District 2A", "District 2B", "District 2C"],
-    //   "Mizoram": ["District 2A", "District 2B", "District 2C"],
-    //   "Nagaland": ["District 2A", "District 2B", "District 2C"],
-    //   "Odisha": ["District 2A", "District 2B", "District 2C"],
-    //   
-
-
-
-    //   // Add more states and districts as needed...
-    // };
-
     const districtsByState = {
         AndhraPradesh: ["District 1A", "District 1B", "District 1C"],
         ArunachalPradesh: ["District 2A", "District 2B", "District 2C"],
@@ -97,8 +70,7 @@
         Mizoram: ["District 2A", "District 2B", "District 2C"],
         Nagaland: ["District 2A", "District 2B", "District 2C"],
         Odisha: ["District 2A", "District 2B", "District 2C"],
-
-        Punjab: ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Muktsar", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "Mohali", "Pathankot", "Sangrur", "Shahid Bhagat Singh Nagar", "Tarn Taran",],
+        Punjab: ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Pathankot", "Patiala", "Rupnagar", "Mohali", "Pathankot", "Sangrur"],
         Rajasthan: ["District 2A", "District 2B", "District 2C"],
         Sikkim: ["District 2A", "District 2B", "District 2C"],
         TamilNadu: ["District 2A", "District 2B", "District 2C"],
@@ -107,7 +79,6 @@
         UttarPradesh: ["District 2A", "District 2B", "District 2C"],
         Uttarakhandh: ["District 2A", "District 2B", "District 2C"],
         WestBengal: ["District 2A", "District 2B", "District 2C"]
-
     };
 
     function populateDistricts() {
@@ -129,47 +100,27 @@
         }
     }
 
-    function showNurseries_Punjab_Mohali() {
-        const selectedState = document.getElementById("states").Punjab;
-        const selectedDistrict = document.getElementById("districts").Mohali;
+    function showNurseries() {
+        const selectedState = document.getElementById("states").value;
+        const selectedDistrict = document.getElementById("districts").value;
 
         // Here you would make an API call to fetch nursery data based on the selected state and district
         // Simulating API call by displaying dummy data
         const nurseries = [
-            { name: "Nursery A", location: "Address 1" },
-            { name: "Nursery B", location: "Address 2" },
-            { name: "Nursery C", location: "Address 3" }
+            { name: "Shri Ajit Nursery", location: "Near Railway Bridge, Opposite iiser, Aerocity Road, Sector, Industrial Area Mohali Phase 9, Sahibzada Ajit Singh Nagar, Punjab 160055" },
+            { name: "Mohali Nursery", location: "Sector 92, Sahibzada Ajit Singh Nagar, Punjab 140307" },
+            { name: "PUDA Plant Nursery", location: "116, Mohali Stadium Rd, Phase 9, Sector 63, Sahibzada Ajit Singh Nagar, Chandigarh, Punjab 160062" },
+            { name: "Sharma Nursery", location: "sec 99 near Ireo rise Sector 99, Sahibzada Ajit Singh Nagar, Punjab 140306" }
             // Dummy data - replace this with API response
         ];
 
-        let nurseriesList = "<h3>Nearby Nurseries:</h3>";
+        let nurseriesList_mohali = "<h3>Nearby Nurseries:</h3>";
         nurseries.forEach(nursery => {
-            nurseriesList += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
+            nurseriesList_mohali += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
         });
 
-        document.getElementById("nurseriesList").innerHTML = nurseriesList;
+        document.getElementById("nurseriesList_mohali").innerHTML = nurseriesList_mohali;
     }
-    function showNurseries_Punjab_Ropar() {
-        const selectedState = document.getElementById("states").Punjab;
-        const selectedDistrict = document.getElementById("districts").Rupnagar;
-
-        // Here you would make an API call to fetch nursery data based on the selected state and district
-        // Simulating API call by displaying dummy data
-        const nurseries = [
-            { name: "Nursery A", location: "Address 1" },
-            { name: "Nursery B", location: "Address 2" },
-            { name: "Nursery C", location: "Address 3" }
-            // Dummy data - replace this with API response
-        ];
-
-        let nurseriesList = "<h3>Nearby Nurseries:</h3>";
-        nurseries.forEach(nursery => {
-            nurseriesList += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
-        });
-
-        document.getElementById("nurseriesList").innerHTML = nurseriesList;
-    }
-
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

@@ -31,6 +31,7 @@
                             <option value="Punjab">Punjab</option>
                             <option value="Maharashtra">Maharashtra</option>
                             <option value="Karnataka">Karnataka</option>
+                            <option value="HimachalPradesh">Himachal Pradesh</option>
                             <!-- Add other states here -->
                         </select>
 
@@ -59,7 +60,7 @@
         Goa: ["District 2A", "District 2B", "District 2C"],
         Gujarat: ["District 2A", "District 2B", "District 2C"],
         Haryana: ["District 2A", "District 2B", "District 2C"],
-        HimachalPradesh: ["District 2A", "District 2B", "District 2C"],
+        HimachalPradesh: ["Kangra", "Shimla", "Chamba"],
         Jharkhand: ["District 2A", "District 2B", "District 2C"],
         Karnataka: ["Bangalore", "Mysore", "Hubli"],
         Kerala: ["District 2A", "District 2B", "District 2C"],
@@ -70,7 +71,7 @@
         Mizoram: ["District 2A", "District 2B", "District 2C"],
         Nagaland: ["District 2A", "District 2B", "District 2C"],
         Odisha: ["District 2A", "District 2B", "District 2C"],
-        Punjab: ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Pathankot", "Patiala", "Rupnagar", "Mohali", "Pathankot", "Sangrur"],
+        Punjab: ["Amritsar", "Barnala", "Patiala", "Rupnagar", "Mohali"],
         Rajasthan: ["District 2A", "District 2B", "District 2C"],
         Sikkim: ["District 2A", "District 2B", "District 2C"],
         TamilNadu: ["District 2A", "District 2B", "District 2C"],
@@ -100,26 +101,164 @@
         }
     }
 
+    // function showNurseries() {
+    //     const selectedState = document.getElementById("states").value;
+    //     const selectedDistrict = document.getElementById("districts").value;
+
+    //     // Here you would make an API call to fetch nursery data based on the selected state and district
+    //     // Simulating API call by displaying dummy data
+    //     const nurseries = [
+    //         { name: "Shri Ajit Nursery", location: "Near Railway Bridge, Opposite iiser, Aerocity Road, Sector, Industrial Area Mohali Phase 9, Sahibzada Ajit Singh Nagar, Punjab 160055" },
+    //         { name: "Mohali Nursery", location: "Sector 92, Sahibzada Ajit Singh Nagar, Punjab 140307" },
+    //         { name: "PUDA Plant Nursery", location: "116, Mohali Stadium Rd, Phase 9, Sector 63, Sahibzada Ajit Singh Nagar, Chandigarh, Punjab 160062" },
+    //         { name: "Sharma Nursery", location: "sec 99 near Ireo rise Sector 99, Sahibzada Ajit Singh Nagar, Punjab 140306" }
+    //         // Dummy data - replace this with API response
+    //     ];
+
+    //     let nurseriesList_mohali = "<h3>Nearby Nurseries:</h3>";
+    //     nurseries.forEach(nursery => {
+    //         nurseriesList_mohali += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
+    //     });
+
+    //     document.getElementById("nurseriesList_mohali").innerHTML = nurseriesList_mohali;
+    // }
+
     function showNurseries() {
         const selectedState = document.getElementById("states").value;
         const selectedDistrict = document.getElementById("districts").value;
 
         // Here you would make an API call to fetch nursery data based on the selected state and district
         // Simulating API call by displaying dummy data
-        const nurseries = [
-            { name: "Shri Ajit Nursery", location: "Near Railway Bridge, Opposite iiser, Aerocity Road, Sector, Industrial Area Mohali Phase 9, Sahibzada Ajit Singh Nagar, Punjab 160055" },
-            { name: "Mohali Nursery", location: "Sector 92, Sahibzada Ajit Singh Nagar, Punjab 140307" },
-            { name: "PUDA Plant Nursery", location: "116, Mohali Stadium Rd, Phase 9, Sector 63, Sahibzada Ajit Singh Nagar, Chandigarh, Punjab 160062" },
-            { name: "Sharma Nursery", location: "sec 99 near Ireo rise Sector 99, Sahibzada Ajit Singh Nagar, Punjab 140306" }
-            // Dummy data - replace this with API response
-        ];
+        const nurseriesData = getNurseriesData(selectedState, selectedDistrict);
 
-        let nurseriesList_mohali = "<h3>Nearby Nurseries:</h3>";
-        nurseries.forEach(nursery => {
-            nurseriesList_mohali += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
+        let nurseriesList = "<h3>Nearby Nurseries:</h3>";
+        nurseriesData.forEach(nursery => {
+            nurseriesList += `<p><strong>${nursery.name}</strong> - ${nursery.location}</p>`;
         });
 
-        document.getElementById("nurseriesList_mohali").innerHTML = nurseriesList_mohali;
+        document.getElementById("nurseriesList_mohali").innerHTML = nurseriesList;
+    }
+
+    // Function to get nursery data based on the selected state and district
+    function getNurseriesData(state, district) {
+        // Simulated nursery data based on state and district
+        const nurseriesData = [];
+
+        // Here, based on the selectedState and selectedDistrict, you can fetch the respective nurseries.
+        if (state === "Punjab" && district === "Mohali") {
+            // Simulated data for Mohali, Punjab
+            nurseriesData.push(
+                { name: "Shri Ajit Nursery", location: "Near Railway Bridge, Opposite iiser, Aerocity Road, Sector, Industrial Area Mohali Phase 9, Sahibzada Ajit Singh Nagar, Punjab 160055" },
+                { name: "Mohali Nursery", location: "Sector 92, Sahibzada Ajit Singh Nagar, Punjab 140307" },
+                { name: "PUDA Plant Nursery", location: "116, Mohali Stadium Rd, Phase 9, Sector 63, Sahibzada Ajit Singh Nagar, Chandigarh, Punjab 160062" },
+                { name: "Sharma Nursery", location: "sec 99 near Ireo rise Sector 99, Sahibzada Ajit Singh Nagar, Punjab 140306" },
+                // Add more nurseries as needed
+            );
+        } 
+        else if (state === "Punjab" && district === "Rupnagar") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Sehjan Nursery Farm", location: "Baba Deep Singh Nagar, Jagjit Nagar, Power Colony, Rupnagar, Chhoti Railon, Punjab 140001" },
+                { name: "Naina nursery ropar", location: "Khawaspura, Punjab 140001" },
+                { name: "Prem plants nursery", location: "Paprala, Rupnagar, Punjab 140001" },
+                { name: "Azad Nursery", location: "2975, Phool Chakkar, Ali Mohalla, Mil Mil Nagar, Gugga Mari Mohalla, Rupnagar, Punjab 140111" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Punjab" && district === "Amritsar") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Paradise Nursery", location: "Prem Building, Putligarh Chowk, Grand Trunk Rd, Amritsar, Punjab 143002" },
+                { name: "Guru Ram Dass Nursery", location: "Fatehgarh Churian Rd, Chand Avenue, Nanngli, Amritsar, Punjab 143001" },
+                { name: "Golden Green Nursery", location: "Asr, Rani Ka Bagh, Amritsar Cantonment, Amritsar, Punjab 143001" },
+                { name: "Josan Nursery", location: "JVJW+8G4, Opposite Joura Phatak, New Golden Avenue, Golden Avenue, Amritsar, Punjab 143001" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Punjab" && district === "Patiala") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Patiala Shahi Nursery", location: "Rajpura Rd, near Old Chungi, Rose Colony, Tej Bagh Colony, Patiala, Punjab 14700" },
+                { name: "National Nursery", location: "Rajbaha Road, NH 64, Patiala, Punjab 147001" },
+                { name: "Lehar Nursery", location: "Jhill, Sirhind - Patiala Rd, Jhill, Patiala, Punjab 147004" },
+                { name: "New Bharat Nursery", location: "8CJ7+9V7, SST Nagar, Patiala, Punjab 147001" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Punjab" && district === "Barnala") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Eco Care Nursery & Landscaping", location: "Barnala, Punjab 148101" },
+                { name: "Durga Nursery ITI Chowk", location: "9H22+V2H, NH703, Barnala, Punjab 148101" },
+                { name: "Pal Agro", location: "PAL AGRO, opposite mahesh Nagar colony Handiaya Road, National Highway 703, Barnala, Punjab 148101" },
+                { name: "Garcha Nursury", location: "8HV4+R4G, Dhanaula Rd, Punjab 148101" },
+                { name: "Green nursery", location: "Barnala, to, Raikot Rd, Mehalklan, Punjab 148101" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Maharashtra" && district === "Pune") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Manoj Nursery", location: "Airport Rd, White House Society, Mhada Colony, Yerawada, Pune, Maharashtra 411006" },
+                { name: "Nurserylive", location: "Office No. 15A, Forth, City Vista, A-Building, Kirtane Baugh, Magarpatta, Kharadi, Pune, Maharashtra 411014" },
+                { name: "Garden Easy Nursery", location: "Shop Number 11, opposite WING-C, Kedari Nagar, Wanowrie, Pune, Maharashtra 411040" },
+                { name: "Plants Nursery", location: "HR5H+G5P, Pune University, Ganeshkhind, Pune, Maharashtra 411007" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Maharashtra" && district === "Mumbai") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Vriksha Nursery", location: "Ganga Apartments, Railway Society Road, Navpada, Irla, Vile Parle West, Mumbai, Maharashtra 400056" },
+                { name: "Sunny Nursery", location: "Orchard Ave, Panchkutir Ganesh Nagar, Powai, Mumbai, Maharashtra 400076" },
+                { name: "Bhavans Plant Nursery", location: "4RFP+P9R, Bhavans College Premises, Munshi Nagar, Andheri West, Mumbai, Maharashtra 400058" },
+                { name: "Lila Nursery", location: "Kanti Kunj, Saraswati Rd, next to Punjab National Bank, GOI Staff Colony, Santacruz West, Mumbai, Maharashtra 400054" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Maharashtra" && district === "Nagpur") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Bharat Nursery", location: "S Ambazari Rd, Shraddhanand Anathalaya, Shraddhanand Peth Chowk, Laxminagar, Nagpur, Maharashtra 440010" },
+                { name: "Taj Nursery", location: "Girls Hostel, D-C, Ambazari Rd, Ramdaspeth, Nagpur, Maharashtra 440010" },
+                { name: "Snehal Nursery", location: "Plot no.92, Omkar Nagar Rd, near Yashwant School, Shri Ram Nagar, Omkar Nagar, Nagpur, Maharashtra 440034" },
+                { name: "Pande Nursery", location: "Jafar Nagar, New Mankapur, Nagpur, Maharashtra 440013" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Karnataka" && district === "Bangalore") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Krishnendra Nursery", location: "9-159, Lalbagh, Ashoka Pillar Rd, 1st Block, Siddapura, Jayanagar, Bengaluru, Karnataka 560011" },
+                { name: "Vishnu Nursery", location: "Shop No. 229, Jayanagar Post, 8th Main Rd, Lalbagh, 1st Block, Siddapura, Jayanagar, Bengaluru, Karnataka 560011" },
+                { name: "Lalbagh Nursery", location: "XH2R+45J, Unnamed Road, Mavalli, Bengaluru, Karnataka 560004" },
+                { name: "Bangalore Agrico Bonsai Nursery", location: "Top Floor, No, 59, Naganahalli Main Rd, ph:9535771669, Kanaka Nagar, Hebbal, Bengaluru, Karnataka 560032" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "Karnataka" && district === "Mysore") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Mysore Plants Nursery", location: "1068, Srivana, bogadi, Ring Rd, opposite to GLN Conventional Hall, Mysuru, Karnataka 570026" },
+                { name: "Parimala Nursery", location: "2939, 'Parimala SNS, Kali Temple St, Chamundipuram, Mysuru, Karnataka 570004" },
+                { name: "Roys Nursery Farm", location: "191, Naguvanahalli Road, Old Kesare, Naidunagar, Karnataka 560008" },
+                { name: "Sampath Nursery", location: "85, Mysore - Nanjangud Rd, Bandipalya, Mysuru, Karnataka 570025" },
+                // Add more nurseries as needed
+            );
+        }
+        else if (state === "HimachalPradesh" && district === "Kangra") {
+            // Simulated data for Mumbai, Maharashtra
+            nurseriesData.push(
+                { name: "Nagarkot Flower Nursery", location: "Village & Post office Ghurkari, near Hodna Showroom, Himachal Pradesh 176001" },
+                { name: "Raman Flower Nursery", location: "Vill. Ansoli, P.O. Matour Dharamshala via, Bagli Rd, Kangra, Himachal Pradesh 176001" },
+                { name: "R.K. Flower Nursery", location: "V.p.o kholi, Tanda Kholi, Himachal Pradesh 176001" },
+                { name: "VK Nursery", location: "Mandi - Pathankot Rd, Matour, Patrakar, Himachal Pradesh 176001" },
+                // Add more nurseries as needed
+            );
+        }
+        // Add similar conditions for other states and districts as required...
+
+        return nurseriesData;
     }
 
 </script>
